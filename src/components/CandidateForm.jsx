@@ -27,6 +27,10 @@ const CandidateForm = ({ onAddCandidate }) => {
     }
   };
 
+  const handleRemoveTech = (techToRemove) => {
+    setSelectedTech(selectedTech.filter((tech) => tech !== techToRemove));
+  };
+
   const handleAddCustomTech = () => {
     if (techInput.trim() && !selectedTech.includes(techInput.trim())) {
       setSelectedTech([...selectedTech, techInput.trim()]);
@@ -54,11 +58,11 @@ const CandidateForm = ({ onAddCandidate }) => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md">
+    <div className="bg-white p-6 rounded-lg shadow-md w-full">
       <h2 className="text-2xl font-bold mb-4">Add New Candidate</h2>
       <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="mb-4">
+        <div className="space-y-4">
+          <div className="w-full">
             <label className="block text-gray-700 mb-2" htmlFor="fullName">
               Full Name
             </label>
@@ -73,7 +77,7 @@ const CandidateForm = ({ onAddCandidate }) => {
             />
           </div>
 
-          <div className="mb-4">
+          <div className="w-full">
             <label className="block text-gray-700 mb-2" htmlFor="jobRole">
               Job Role/Position
             </label>
@@ -88,7 +92,7 @@ const CandidateForm = ({ onAddCandidate }) => {
             />
           </div>
 
-          <div className="mb-4">
+          <div className="w-full">
             <label className="block text-gray-700 mb-2" htmlFor="linkedInUrl">
               LinkedIn URL
             </label>
@@ -103,7 +107,7 @@ const CandidateForm = ({ onAddCandidate }) => {
             />
           </div>
 
-          <div className="mb-4">
+          <div className="w-full">
             <label className="block text-gray-700 mb-2" htmlFor="githubUrl">
               GitHub URL
             </label>
@@ -118,7 +122,7 @@ const CandidateForm = ({ onAddCandidate }) => {
             />
           </div>
 
-          <div className="mb-4">
+          <div className="w-full">
             <label
               className="block text-gray-700 mb-2"
               htmlFor="experienceLevel"
@@ -142,19 +146,26 @@ const CandidateForm = ({ onAddCandidate }) => {
             </select>
           </div>
 
-          <div className="mb-4">
+          <div className="w-full">
             <label className="block text-gray-700 mb-2">Tech Stack</label>
             <div className="flex flex-wrap gap-2 mb-2">
               {selectedTech.map((tech) => (
                 <span
                   key={tech}
-                  className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs"
+                  className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs flex items-center"
                 >
                   {tech}
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveTech(tech)}
+                    className="ml-1 text-blue-600 hover:text-blue-800"
+                  >
+                    &times;
+                  </button>
                 </span>
               ))}
             </div>
-            <div className="flex">
+            <div className="flex w-full">
               <input
                 type="text"
                 value={techInput}
@@ -191,7 +202,7 @@ const CandidateForm = ({ onAddCandidate }) => {
 
         <button
           type="submit"
-          className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 mt-4"
+          className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 mt-4 w-full"
         >
           Add Candidate
         </button>
