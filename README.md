@@ -55,7 +55,7 @@ The Candidate Portfolio Dashboard is an internal HR tool designed to help recrui
 1. Clone the repository:
 
    ```bash
-   git clone [repository-url]
+   git clone https://github.com/BongominErickJuma/Candidate-Portfolio-Dashboard
    cd candidate-portfolio-dashboard
    ```
 
