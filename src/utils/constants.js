@@ -1,0 +1,30 @@
+export const EXPERIENCE_LEVELS = [
+  { value: "junior", label: "Junior" },
+  { value: "mid", label: "Mid-Level" },
+  { value: "senior", label: "Senior" },
+];
+
+export const TECH_STACK_OPTIONS = [
+  "React",
+  "Node.js",
+  "JavaScript",
+  "TypeScript",
+  "Python",
+  "Java",
+  "Docker",
+  "Kubernetes",
+  "AWS",
+  "Azure",
+  "Git",
+  "HTML/CSS",
+  "Tailwind CSS",
+  "Redux",
+  "GraphQL",
+  "MongoDB",
+  "PostgreSQL",
+  "SQL",
+  "Express",
+  "Next.js",
+  "Vue.js",
+  "Angular",
+];
