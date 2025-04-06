@@ -37,7 +37,7 @@ The Candidate Portfolio Dashboard is an internal HR tool designed to help recrui
   - Name (A-Z)
   - Experience level (Junior → Senior)
 
-### Bonus Features
+### Other Features
 
 - **Click any candidate** to view full details in a modal
 - **Pagination** for large candidate lists
