@@ -1,0 +1,29 @@
+[
+  {
+    "id": "default-1",
+    "fullName": "Sarah Chen",
+    "jobRole": "Senior Full Stack Developer",
+    "linkedInUrl": "https://linkedin.com/in/sarahchen",
+    "githubUrl": "https://github.com/sarahchen",
+    "experienceLevel": "senior",
+    "techStack": ["React", "Node.js", "TypeScript", "AWS", "Docker", "GraphQL", "PostgreSQL", "Python"]
+  },
+  {
+    "id": "default-2",
+    "fullName": "Marcus Rodriguez",
+    "jobRole": "Frontend Developer & UI/UX Designer",
+    "linkedInUrl": "https://linkedin.com/in/marcusrodriguez",
+    "githubUrl": "https://github.com/marcusrodriguez",
+    "experienceLevel": "mid",
+    "techStack": ["React", "Vue.js", "Tailwind CSS", "Figma", "JavaScript", "Next.js", "Framer Motion"]
+  },
+  {
+    "id": "default-3",
+    "fullName": "Alex Thompson",
+    "jobRole": "Junior Software Engineer",
+    "linkedInUrl": "https://linkedin.com/in/alexthompson",
+    "githubUrl": "https://github.com/alexthompson",
+    "experienceLevel": "junior",
+    "techStack": ["JavaScript", "HTML/CSS", "React", "Git", "MongoDB", "Express"]
+  }
+]

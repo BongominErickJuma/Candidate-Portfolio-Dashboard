@@ -1,12 +1,14 @@
+import { FaLinkedin, FaGithub, FaUser, FaBriefcase } from "react-icons/fa";
+
 const CandidateCard = ({ candidate, onClick }) => {
-  const getExperienceColor = () => {
+  const getExperienceClass = () => {
     switch (candidate.experienceLevel) {
       case "junior":
-        return "bg-green-100 text-green-800";
+        return "experience-badge-junior";
       case "mid":
-        return "bg-blue-100 text-blue-800";
+        return "experience-badge-mid";
       case "senior":
-        return "bg-purple-100 text-purple-800";
+        return "experience-badge-senior";
       default:
         return "bg-gray-100 text-gray-800";
     }
@@ -27,71 +29,109 @@ const CandidateCard = ({ candidate, onClick }) => {
 
   return (
     <div
-      className="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow cursor-pointer"
+      className="group relative bg-white rounded-3xl p-6 cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl border border-gray-100 overflow-hidden"
       onClick={() => onClick(candidate)}
     >
-      <div className="flex justify-between items-start">
-        <div>
-          <h3 className="text-xl font-bold">{candidate.fullName}</h3>
-          <p className="text-gray-600">{candidate.jobRole}</p>
+      {/* Gradient overlay on hover */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-pink-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl"></div>
+      
+      {/* Header with avatar and experience badge */}
+      <div className="relative z-10 flex items-start justify-between mb-6">
+        <div className="flex items-center space-x-4">
+          <div className="relative">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+              <FaUser className="text-white text-xl" />
+            </div>
+            {/* Online indicator */}
+            <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-400 rounded-full border-2 border-white shadow-lg"></div>
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="text-xl font-bold text-gray-900 mb-1 truncate group-hover:text-purple-700 transition-colors duration-300">
+              {candidate.fullName}
+            </h3>
+            <div className="flex items-center text-gray-600 mb-2">
+              <FaBriefcase className="mr-2 text-sm text-purple-500" />
+              <p className="font-medium text-sm truncate">{candidate.jobRole}</p>
+            </div>
+          </div>
         </div>
         <span
-          className={`px-2 py-1 rounded-full text-xs font-semibold ${getExperienceColor()}`}
+          className={`px-3 py-1.5 rounded-2xl text-xs font-bold shadow-lg ${getExperienceClass()} flex-shrink-0`}
         >
           {getExperienceLabel()}
         </span>
       </div>
 
-      <div className="mt-4 flex space-x-3">
-        <a
-          href={candidate.linkedInUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-500 hover:text-blue-700"
-        >
-          <svg
-            className="w-5 h-5"
-            fill="currentColor"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-          </svg>
-        </a>
-        <a
-          href={candidate.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gray-700 hover:text-gray-900"
-        >
-          <svg
-            className="w-5 h-5"
-            fill="currentColor"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path
-              fillRule="evenodd"
-              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </a>
-      </div>
-
-      <div className="mt-4">
-        <h4 className="text-sm font-semibold text-gray-500 mb-1">Tech Stack</h4>
-        <div className="flex flex-wrap gap-2">
-          {candidate.techStack.map((tech) => (
+      {/* Skills preview */}
+      <div className="relative z-10 mb-6">
+        <div className="flex items-center justify-between mb-3">
+          <h4 className="text-sm font-bold text-gray-700">Top Skills</h4>
+          <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full font-medium">
+            {candidate.techStack.length} skills
+          </span>
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          {candidate.techStack.slice(0, 3).map((tech) => (
             <span
               key={tech}
-              className="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs"
+              className="bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 px-3 py-1.5 rounded-xl text-xs font-semibold border border-purple-200 hover:border-purple-300 transition-colors duration-200"
             >
               {tech}
             </span>
           ))}
+          {candidate.techStack.length > 3 && (
+            <span className="bg-gray-100 text-gray-600 px-3 py-1.5 rounded-xl text-xs font-semibold">
+              +{candidate.techStack.length - 3}
+            </span>
+          )}
         </div>
       </div>
+
+      {/* Footer with social links and CTA */}
+      <div className="relative z-10 pt-4 border-t border-gray-100">
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex space-x-2">
+            <a
+              href={candidate.linkedInUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 rounded-xl bg-blue-500 flex items-center justify-center text-white hover:bg-blue-600 transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <FaLinkedin className="text-sm" />
+            </a>
+            <a
+              href={candidate.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 rounded-xl bg-gray-800 flex items-center justify-center text-white hover:bg-gray-900 transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <FaGithub className="text-sm" />
+            </a>
+          </div>
+          <div className="flex items-center space-x-1 text-purple-600 group-hover:text-purple-700 transition-colors duration-300">
+            <span className="text-xs font-medium">View Details</span>
+            <div className="w-4 h-4 rounded-full bg-purple-100 flex items-center justify-center group-hover:bg-purple-200 transition-colors duration-300">
+              <svg className="w-2 h-2 fill-current" viewBox="0 0 8 8">
+                <path d="M0 3h6L4 1v2h4v2H4v2L6 5H0z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        
+        {/* Prominent View Profile Button */}
+        <button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 px-4 rounded-xl font-semibold text-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] group-hover:from-purple-600 group-hover:to-pink-600 flex items-center justify-center space-x-2">
+          <span>👁️ View Full Profile</span>
+          <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Decorative elements */}
+      <div className="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300 -z-0"></div>
+      <div className="absolute bottom-4 left-4 w-12 h-12 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300 -z-0"></div>
     </div>
   );
 };
